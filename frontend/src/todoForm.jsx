@@ -4,10 +4,10 @@ import { useState } from 'react';
 export default function TodoForm({ onAdd }) {
   const [text, setText] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!text.trim()) return;
-    onAdd(text);
+    await onAdd(text.trim());
     setText('');
   };
 

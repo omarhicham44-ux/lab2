@@ -1,0 +1,13 @@
+{
+  "name": "lab2-typescript-exercises",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "start": "tsc --outDir dist --noEmit false && node dist/exercise-2-3.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

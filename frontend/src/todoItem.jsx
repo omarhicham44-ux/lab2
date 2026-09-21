@@ -5,8 +5,16 @@ export default function TodoItem({ todo, onToggle, onRename, onRemove }) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(todo.title);
 
-  const handleSave = () => {
-    onRename(todo._id, newTitle);
+  const handleSave = async () => {
+    const title = newTitle.trim();
+    if (!title) {
+      setNewTitle(todo.title);
+      setIsEditing(false);
+      return;
+    }
+
+    await onRename(todo._id, title);
+    setNewTitle(title);
     setIsEditing(false);
   };
 
@@ -25,6 +33,13 @@ export default function TodoItem({ todo, onToggle, onRename, onRemove }) {
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
           onBlur={handleSave}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') e.currentTarget.blur();
+            if (e.key === 'Escape') {
+              setNewTitle(todo.title);
+              setIsEditing(false);
+            }
+          }}
           autoFocus
         />
       ) : (

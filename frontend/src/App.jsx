@@ -1,7 +1,7 @@
 // App.jsx
 import { useState, useEffect } from 'react';
-import TodoForm from './TodoForm';
-import TodoList from './TodoList';
+import TodoForm from './todoForm';
+import TodoList from './todoList';
 import { fetchTodos, createTodo, updateTodo, deleteTodo } from './api/todos';
 import './todo.css';
 
@@ -17,7 +17,6 @@ export default function App() {
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
-    setLoading(true);
     let params;
     if (filter === 'active') params = { completed: false };
     if (filter === 'done') params = { completed: true };
@@ -28,22 +27,22 @@ export default function App() {
 
   const handleAdd = async (title) => {
     const newTodo = await createTodo(title);
-    setTodos([newTodo, ...todos]);
+    setTodos(currentTodos => [newTodo, ...currentTodos]);
   };
 
   const handleToggle = async (id, done) => {
     const updated = await updateTodo(id, { done: !done });
-    setTodos(todos.map(t => t._id === id ? updated : t));
+    setTodos(currentTodos => currentTodos.map(t => t._id === id ? updated : t));
   };
 
   const handleRename = async (id, title) => {
     const updated = await updateTodo(id, { title });
-    setTodos(todos.map(t => t._id === id ? updated : t));
+    setTodos(currentTodos => currentTodos.map(t => t._id === id ? updated : t));
   };
 
   const handleRemove = async (id) => {
     await deleteTodo(id);
-    setTodos(todos.filter(t => t._id !== id));
+    setTodos(currentTodos => currentTodos.filter(t => t._id !== id));
   };
 
   return (
