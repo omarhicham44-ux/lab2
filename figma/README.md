@@ -7,13 +7,12 @@ Current file status:
 - [x] File created and connected to Omar Hicham's Figma account
 - [x] Source colors, spacing, radii, typography, and card shadow added as local design tokens/styles
 - [x] Cover page created
-- [x] Foundations page started with variable-bound color swatches
-- [ ] Login and Thank You frames
-- [ ] Default/Hover Log In button component
-- [ ] On-click navigation and Present-mode verification
-
-The unchecked items require additional Figma MCP calls. The connected Starter
-plan reached its Figma MCP tool-call limit while this file was being built.
+- [x] Foundations page created with variable-bound color swatches
+- [x] Login and Thank You desktop frames created
+- [x] Default/Hover Log In button component created
+- [x] Hover and mouse-leave component transitions configured
+- [x] Log In action connected to the Thank You frame
+- [x] Prototype flow starts on Login and opens successfully in Present mode
 
 Create a Figma file with these two desktop frames:
 
@@ -26,6 +25,9 @@ Create a Figma file with these two desktop frames:
    - A clear confirmation message
    - Optional link back to the login frame
 
-In Prototype mode, connect the Log In button using `On click -> Navigate to -> Thank You`.
-Use Present mode to confirm the hover state and navigation before submitting the
-Figma share link.
+Prototype configuration:
+
+- Default button: `While hovering -> Change to -> Hover`
+- Hover button: `Mouse leave -> Change to -> Default`
+- Log In action: `On click -> Navigate to -> Thank You`
+- Flow starting point: `Login`
