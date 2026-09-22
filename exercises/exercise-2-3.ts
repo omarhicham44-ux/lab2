@@ -101,5 +101,13 @@ function createPerson(id: number, name: string, personAge: number, address?: str
 }
 
 const person = createPerson(1, 'Omar', 30, 'Cairo');
-// person.id = 2; // TypeScript error: Cannot assign to 'id' because it is read-only.
+
+function demonstrateReadonlyId(candidate: Person): void {
+  // This expected compiler error proves that readonly prevents reassignment.
+  // @ts-expect-error Cannot assign to 'id' because it is a read-only property.
+  candidate.id = 2;
+}
+
+// Keep the compile-time demonstration without executing the invalid assignment.
+void demonstrateReadonlyId;
 console.log(person);
